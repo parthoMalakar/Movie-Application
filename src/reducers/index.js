@@ -1,4 +1,4 @@
-import { ADD_MOVIES } from '../actions/index'
+import { ADD_MOVIES, ADD_FAVOURITE } from '../actions/index'
 
 const initalMoviesState = {
     list : [],
@@ -7,11 +7,26 @@ const initalMoviesState = {
 
 
 export default function movies (state = initalMoviesState, action) {
-    if (action.type === ADD_MOVIES) {
-        return {
-            ...state,
-            list: action.movies
-        };
+    // if (action.type === ADD_MOVIES) {
+    //     return {
+    //         ...state,
+    //         list: action.movies
+    //     };
+    // }
+    // return state;
+
+    switch(action.type) {
+        case ADD_MOVIES:
+            return {
+                ...state,
+                list: action.movies
+            }
+        case ADD_FAVOURITE:
+            return {
+                ...state,
+                favourites: [action.movie, ...state.favourites]
+            }
+        default:
+            return state;
     }
-    return state;
 }
