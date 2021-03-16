@@ -4,10 +4,11 @@ const initalMoviesState = {
     list : [],
     favourites : [],
     showFavourites: false
-}
+};
 
 
-export default function movies (state = initalMoviesState, action) {
+export function movies (state = initalMoviesState, action) {
+    console.log("Movies Reducers");
     // if (action.type === ADD_MOVIES) {
     //     return {
     //         ...state,
@@ -43,4 +44,25 @@ export default function movies (state = initalMoviesState, action) {
         default:
             return state;
     }
+}
+
+const initialSearchState = {
+    results : {}
+};
+
+export function search (state = initialSearchState, action) {
+    console.log("Search Reducers");
+    return state;
+}
+
+const initialRootState = {
+    movies: initalMoviesState,
+    search: initialSearchState
+};
+
+export default function rootReducer (state = initialRootState, action) {
+    return {
+        movies: movies(state.movies, action),
+        search: search(state.search, action)
+    };
 }
