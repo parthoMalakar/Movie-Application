@@ -38,7 +38,7 @@ render () {
     return (
         <div className="nav">
             <div className="search-container">
-                <input onChange={this.handleChange}/>
+                <input onChange={this.handleChange} placeholder="Search for movies"/>
                 <button id="search-btn" onClick={this.handleSearch}>Search</button>
                 {
                     showSearchResults &&

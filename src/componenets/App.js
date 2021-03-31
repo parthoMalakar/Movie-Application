@@ -1,8 +1,9 @@
 import React from 'react';
-import {data} from '../data';
-import Navbar from '../componenets/Navbar';
-import MovieCard from '../componenets/MovieCard';
+import {data as moviesList} from '../data';
+import Navbar from './Navbar';
+import MovieCard from './MovieCard';
 import {addMovies, setShowFavourites} from '../actions/index';
+import { StoreContext } from '../index';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class App extends React.Component {
     });
     //make api call 
     //dispatch the action
-    store.dispatch(addMovies(data));
+    store.dispatch(addMovies(moviesList));
 
     console.log('State', this.props.store.getState());
   }
@@ -66,4 +67,15 @@ class App extends React.Component {
   }
 }
 
-export default App;
+class AppWraper extends React.Component {
+  render () {
+    return (
+      <StoreContext.Consumer>
+        {(store) => <App store={store}/>}
+      </StoreContext.Consumer>
+    );
+
+  }
+}
+
+export default AppWraper;
